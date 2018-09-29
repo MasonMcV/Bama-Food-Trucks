@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1037770152093",
+    "firebase_url": "https://test1-ac6bd.firebaseio.com",
+    "project_id": "test1-ac6bd",
+    "storage_bucket": "test1-ac6bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037770152093:android:970c718748b0e012",
+        "android_client_info": {
+          "package_name": "com.msquaredtech.bamafoodtrucks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037770152093-daqohc6o6mcl4kjtqnmv0loprgvovuea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBB2VBM7JT3Phpwc4o7gpcT0oLuj1vDREE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
