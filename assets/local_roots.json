@@ -1,0 +1,70 @@
+{
+    "meta": {
+        "truck": "Local Roots",
+        "truckid": 1
+    },
+    "Entrees": {
+        "items": [
+            {
+                "category": "Entrees",
+                "name": "Local Roots Burger",
+                "price": 9,
+                "description": "Ground Brisket and Chuck, Cheddar, House Pickles, Special Sauce, Bacon/Onion Marmalade & Lettuce on a Brioche Bun",
+                "note": "*Cooked medium unless specified"
+            },
+            {
+                "category": "Entrees",
+                "name": "Weekly Green Salad",
+                "price": 9,
+                "description": "Baby Lettuces, Tomatoes, Cucumbers, Avocados, Pecans, Raisins, Feta, Balsamic Vinaigrette",
+                "note": "Add Smoked Chicken: $1.50"
+            },
+            {
+                "category": "Entrees",
+                "name": "Smoked Chicken Caesar Piadine",
+                "price": 9,
+                "description": "Spicy Marinara, Mozzarella, Romaine, Parmesan & A Caesar Salad",
+                "note": "A piadine is a fresh salad nestled inside a folded pizza"
+            }
+        ]
+    },
+    "Sides": {
+        "items": [
+            {
+                "category": "Sides",
+                "name": "Grandaddy's Fries",
+                "price": 4,
+                "description": "with Sriracha Aioli"
+            },
+            {
+                "category": "Sides",
+                "name": "Mac & Cheese",
+                "price": 4
+            },
+            {
+                "category": "Sides",
+                "name": "Caesar Salad (Small)",
+                "price": 4
+            }
+        ]
+    },
+    "Drinks": {
+        "items": [
+            {
+                "category": "Drinks",
+                "name": "Coke",
+                "price": 1.50
+            },
+            {
+                "category": "Drinks",
+                "name": "Diet Coke",
+                "price": 1.50
+            },
+            {
+                "category": "Drinks",
+                "name": "Bottled Water",
+                "price": 1.50
+            }
+        ]
+    }
+}

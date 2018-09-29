@@ -1,0 +1,70 @@
+{
+    "meta": {
+        "truck": "Little Poblano Mexican Cuisine",
+        "truckid": "2"
+    },
+    
+    "Tacos": {
+        "items": [
+            {
+                "name": "Pollo",
+                "price": 10,
+                "description": "Chicken roasted in an Orange Tinga sauce, Guacamole, Pickled Red Onion, Marinated Cabbage, House Crema",
+                "note": "2 tacos per order"
+            }
+        ]
+    },
+    "Tamales": {
+        "items": [
+            {
+                "name": "Tamale of the Day",
+                "price": 10,
+                "description": "Topped with House Crema, Pico de gallo, Cilantro, Cotija, and Pickled Red Onion\nSauce: Choose Red, Green or Both",
+                "note": "2 tamales per order"
+            }
+        ]
+    },
+    "Sides": {
+        "items": [
+            {
+                "name": "House Chips and Salsa",
+                "price": 3,
+                "description": "Add Queso $3"
+            },
+            {
+                "name": "Queso and Chips",
+                "price": 5
+            },
+            {
+                "name": "Skillet Corn",
+                "price": 5,
+                "description": "Shaved grilled corn with bacon lardons, roasted poblano, onions and lime. Topped with seasoned mayo, cilantro, cotija and house chile seasoning."
+            },
+            {
+                "name": "Black Beans",
+                "price": 3,
+                "description": "with roasted garlic and Mexican spices. Topped with cilantro and cotija."
+            },
+            {
+                "name": "Mexican Red Rice",
+                "price": 3
+            }
+        ]
+    },
+    "Drinks": {
+        "items": [
+            {
+                "name": "Topo Chico",
+                "price": 2
+            },
+            {
+                "name": "Topo Chico Grapefruit",
+                "price": 2
+            },
+            {
+                "name": "Bottled Water",
+                "price": 1.50
+            }
+        ]
+    }
+}
