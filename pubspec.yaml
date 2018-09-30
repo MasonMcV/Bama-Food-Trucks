@@ -24,6 +24,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  #mapbox_gl: ^0.0.1
+
   cloud_firestore: "^0.8.0"
 
   flutter_launcher_icons: "^0.6.1"

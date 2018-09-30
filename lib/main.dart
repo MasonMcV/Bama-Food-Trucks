@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
+import 'menu.dart';
 
 Future<void> main() async {
   final FirebaseApp app = await FirebaseApp.configure(
@@ -29,67 +30,114 @@ class MessageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DocumentSnapshot snapshots;
+    AsyncSnapshot<QuerySnapshot> snapshot;
+
     return new StreamBuilder<QuerySnapshot>(
-      stream: firestore.collection('local_roots').snapshots(),
+      stream: firestore.collection('store_list').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return const Text('No Menu Avaliable...'); // If there isn't any data, say no Menu
 
-        // Removes the Meta Data document.
-        var metaIndex = snapshot.data.documents.indexWhere((document) => document.documentID == "meta");
-        if(metaIndex != -1) var meta = snapshot.data.documents.removeAt(metaIndex);
+        //print(snapshot.data.documents);
 
+        // Removes the Meta Data document.
+        //var metaIndex = snapshot.data.documents.indexWhere((document) => document.documentID == "meta");
+        //if(metaIndex != -1) var meta = snapshot.data.documents.removeAt(metaIndex);
+
+        //print(snapshot.data.documents[0]["truck"]);
 
         return new ListView(
-          children: expandedWidgetList(snapshot.data.documents),
+          children: storeNameWidgetList(snapshot.data.documents, context),
         );
       },
     );
+    /*print(data);
+    print(snapshots);
+    List<dynamic> list;
+
+    for(var that in snapshots.data["stores"]){
+      Future<DocumentSnapshot> data = firestore.collection(that).document("meta").get();
+
+      data.then((DocumentSnapshot stuff) => snapshots);
+
+      list.add(snapshots);
+    }
+    return new ListView(
+      children: tileWidgetList(list, context),
+    );*/
   }
 
-  List<Widget> expandedWidgetList(List<DocumentSnapshot> snapshots){
+  List<Widget> storeNameWidgetList(List<DocumentSnapshot> snapshotList,
+      BuildContext context) {
     List<Widget> expansionList = [];
 
-    if(snapshots != null &&  snapshots.isNotEmpty) {
-      for (var snapshot in snapshots) {
+    if (snapshotList != null && snapshotList.isNotEmpty) {
+      for (var snapshotDocument in snapshotList) {
         //var text = snapshot.data["test"];
+        for (var iterator in snapshotDocument["stores"]) {
+          String truckTitle;
+          var metaIndex = firestore.collection(iterator).document("meta").get();
+          var metaFound = metaIndex.then((DocumentSnapshot snap){
+            truckTitle = snap.data["truck"];
+          });
 
-        expansionList.add(new ExpansionTile(title: new Text(snapshot.documentID),
-          children: tileWidgetList(snapshot.data["items"]),
-        ));
+
+          expansionList.add(new ListTile(
+            title: new Text(iterator),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(builder: (BuildContext context) {
+                    return new MenuPage(firestore: firestore,title: truckTitle, reference: iterator,);
+                  })
+              );
+            },
+          ),);
+
+        }
+        /*new ExpansionTile(title: new Text(snapshotDocument.documentID),
+          children: tileWidgetList(snapshotDocument.data["items"],context),
+        ));*/
       }
     }
     return expansionList;
   }
-  List<Widget> tileWidgetList(List<dynamic> list){
+
+  /*List<Widget> tileWidgetList(List<dynamic> list, BuildContext context) {
     List<Widget> expansionList = [];
-    for(Map map in list) {
+    for (Map map in list) {
       expansionList.add(new ListTile(
-        title: new Text(map["name"]),
-        //isThreeLine: true,
-        subtitle: map.containsKey("description") ? new Text(map["description"]) : null,
+        title: new Text(map["truck"]),
+        onTap: () {
+          Navigator.push(
+              context, new MaterialPageRoute(builder: (BuildContext context) {
+            return new MenuPage(firestore: firestore,);
+          }));
+        },
       ),);
     }
     return expansionList;
-  }
+  }*/
 }
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({this.firestore});
   final Firestore firestore;
 
-  CollectionReference get messages => firestore.collection('messages');
-
   Future<Null> _addMessage() async {
     /*var db = Firestore.instance;
 
-    String wholeFile = await getFileData("assets/local_roots.json");
+    String wholeFile = await getFileData("assets/little_poblano.json");
 
     Map<String, dynamic> data = json.decode(wholeFile);
 
-    db.collection("local_roots").document("meta").setData(data["meta"]);
-    db.collection("local_roots").document("Entrees").setData(data["Entrees"]);
-    db.collection("local_roots").document("Sides").setData(data["Sides"]);
-    db.collection("local_roots").document("Drinks").setData(data["Drinks"]);*/
+    String storeName = "little_poblano";
+    List<String> storeOptions = ["Tacos","Tamales","Sides","drinks"];
+    db.collection(storeName).document("meta").setData(data["meta"]);
+    db.collection(storeName).document("Tacos").setData(data["Tacos"]);
+    db.collection(storeName).document("Tamales").setData(data["Tamales"]);
+    db.collection(storeName).document("Sides").setData(data["Sides"]);
+    db.collection(storeName).document("Drinks").setData(data["Drinks"]);*/
   }
 
   Future<String> getFileData(String path) async {
