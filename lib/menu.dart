@@ -5,10 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
+import 'map.dart';
 
 
 class MessageList extends StatelessWidget {
-  MessageList({this.firestore, this.reference, this.title});
+  MessageList({this.firestore, this.context, this.reference, this.title});
+
+  BuildContext context;
 
   final Firestore firestore;
   final String reference;
@@ -23,18 +26,51 @@ class MessageList extends StatelessWidget {
 
         // Removes the Meta Data document.
         var metaIndex = snapshot.data.documents.indexWhere((document) => document.documentID == "meta");
-        if(metaIndex != -1) var meta = snapshot.data.documents.removeAt(metaIndex);
+        var meta = snapshot.data.documents.removeAt(metaIndex);
 
-
+        var send = {"lat":meta["lat"],"long":meta["long"]};
         return new ListView(
-          children: expandedWidgetList(snapshot.data.documents),
+          children: expandedWidgetList(snapshot.data.documents, send),
         );
       },
     );
   }
 
-  List<Widget> expandedWidgetList(List<DocumentSnapshot> snapshotList){
+  Widget imageCard(var lat, var long) {
+    String firstHalf = "https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/";
+    var _lat = lat;
+    var _long = long;
+    var _zoom = 17.00;
+    String secondHalf = ",0,0/600x600?access_token=pk.eyJ1IjoibWFzb25tY3YiLCJhIjoiY2ptbmd3NThvMHRvdDNwcGR2ZTkzajhheCJ9.ad1bCvlsdErHKmTom2GPgQ";
+    String imageString = firstHalf + _lat.toString() + "," + _long.toString() +
+        "," + _zoom.toString() + secondHalf;
+    return new Card(
+        child: new Stack(
+          children: <Widget>[
+            new Center(
+              child: new Image.network(imageString,),
+            ),
+            new Container(
+              child: new Icon(
+                Icons.add_location,
+                size: 40.0,
+                color: Colors.red,
+              ),
+              alignment: Alignment(0.0, 0.0),
+            ),
+          ],
+          alignment: Alignment(0.0, 0.0),
+        )
+    );
+  }
+
+
+  List<Widget> expandedWidgetList(List<DocumentSnapshot> snapshotList, var sent){
     List<Widget> expansionList = [];
+
+    expansionList.add(
+        imageCard(sent["lat"], sent["long"])
+    );
 
     if(snapshotList != null &&  snapshotList.isNotEmpty) {
       for (var snapshotDocument in snapshotList) {
@@ -77,6 +113,7 @@ class MenuPage extends StatelessWidget {
 
     return new Scaffold(
       appBar: new AppBar(
+        backgroundColor: Colors.red,
         title: Text(title),
       ),
       body: new MessageList(firestore: firestore, reference: reference, title: title),

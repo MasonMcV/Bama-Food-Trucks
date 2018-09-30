@@ -9,6 +9,7 @@ import 'package:mapbox_gl/overlay.dart';
 import 'dart:convert';
 import 'menu.dart';
 import 'map.dart';
+import 'dart:io';
 
 Future<void> main() async {
   final FirebaseApp app = await FirebaseApp.configure(
@@ -23,7 +24,9 @@ Future<void> main() async {
   final Firestore firestore = new Firestore(app: app);
 
   runApp(new MaterialApp(
-      title: 'Bama Food Trucks', home: new MyHomePage(firestore: firestore)));
+      title: 'Bama Food Trucks',
+      theme: new ThemeData(accentColor: Colors.red),
+      home: new MyHomePage(firestore: firestore)));
 }
 
 class MessageList extends StatelessWidget {
@@ -55,21 +58,25 @@ class MessageList extends StatelessWidget {
     expansionList.add(
         new GestureDetector(child:
         new Card(
-          child: new Image.asset(
+          child: new Image.network(
+              "https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-87.5466108,33.2116995,14.25,0,0/600x400?access_token=pk.eyJ1IjoibWFzb25tY3YiLCJhIjoiY2ptbmd3NThvMHRvdDNwcGR2ZTkzajhheCJ9.ad1bCvlsdErHKmTom2GPgQ",
+          ),
+
+           /*Image.asset(
             'assets/image.png',
             width: 600.0,
             height: 240.0,
             fit: BoxFit.cover,
-          ),
+          ),*/
         ),
-          onTap: () {
+          /*onTap: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return new MapPage(firestore: firestore,);
+                  return new MapPage(lat: -87.5466108, long: 33.2116995,);
                 })
             );
-          },
+          },*/
         )
     );
 
@@ -77,15 +84,21 @@ class MessageList extends StatelessWidget {
       for (var snapshotDocument in snapshotList) {
         //var text = snapshot.data["test"];
         for (var iterator in snapshotDocument["stores"]) {
-          String truckTitle;
-          var metaIndex = firestore.collection(iterator).document("meta").get();
+          String truckTitle = "this is a text";
+          /*var metaIndex = firestore.collection(iterator).document("meta").get();
           var metaFound = metaIndex.then((DocumentSnapshot snap){
             truckTitle = snap.data["truck"];
-          });
+          });*/
 
+          if(iterator == "gampys_soda")
+            truckTitle = "Gampy's Soda";
+          if(iterator == "little_poblano")
+            truckTitle = "Little Poblano Mexican Grill";
+          if(iterator == "local_roots")
+            truckTitle = "Local Roots";
 
           expansionList.add(new ListTile(
-            title: new Text(iterator),
+            title: new Text(truckTitle),
             onTap: () {
               Navigator.push(
                   context,
@@ -136,7 +149,8 @@ class MyHomePage extends StatelessWidget {
 
     return new Scaffold(
       appBar: new AppBar(
-        title: const Text('Firestore Example'),
+        backgroundColor: Colors.red,
+        title: const Text("Bama Food Trucks"),
       ),
       /*body: new Container(
         child: new MapboxOverlay(
