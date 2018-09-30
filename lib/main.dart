@@ -40,38 +40,18 @@ class MessageList extends StatelessWidget {
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (!snapshot.hasData) return const Text('No Menu Avaliable...'); // If there isn't any data, say no Menu
 
-        //print(snapshot.data.documents);
-
-        // Removes the Meta Data document.
-        //var metaIndex = snapshot.data.documents.indexWhere((document) => document.documentID == "meta");
-        //if(metaIndex != -1) var meta = snapshot.data.documents.removeAt(metaIndex);
-
-        //print(snapshot.data.documents[0]["truck"]);
-
         return new ListView(
           children: storeNameWidgetList(snapshot.data.documents, context),
         );
       },
     );
-    /*print(data);
-    print(snapshots);
-    List<dynamic> list;
-
-    for(var that in snapshots.data["stores"]){
-      Future<DocumentSnapshot> data = firestore.collection(that).document("meta").get();
-
-      data.then((DocumentSnapshot stuff) => snapshots);
-
-      list.add(snapshots);
-    }
-    return new ListView(
-      children: tileWidgetList(list, context),
-    );*/
   }
 
   List<Widget> storeNameWidgetList(List<DocumentSnapshot> snapshotList,
       BuildContext context) {
     List<Widget> expansionList = [];
+
+    expansionList.add(new Card(child: new Text("this is the first tile"),));
 
     if (snapshotList != null && snapshotList.isNotEmpty) {
       for (var snapshotDocument in snapshotList) {
@@ -95,11 +75,7 @@ class MessageList extends StatelessWidget {
               );
             },
           ),);
-
         }
-        /*new ExpansionTile(title: new Text(snapshotDocument.documentID),
-          children: tileWidgetList(snapshotDocument.data["items"],context),
-        ));*/
       }
     }
     return expansionList;
@@ -127,21 +103,25 @@ class MyHomePage extends StatelessWidget {
   MyHomePage({this.firestore});
   final Firestore firestore;
 
-  Future<Null> _addMessage() async {
-    /*var db = Firestore.instance;
+  /*Future<Null> _addMessage() async {
+    var db = Firestore.instance;
 
-    String wholeFile = await getFileData("assets/little_poblano.json");
+    String wholeFile = await getFileData("assets/gampys_soda.json");
 
     Map<String, dynamic> data = json.decode(wholeFile);
 
-    String storeName = "little_poblano";
-    List<String> storeOptions = ["Tacos","Tamales","Sides","drinks"];
+    String storeName = "gampys_soda";
+    List<String> storeOptions = ["Coca-Cola","Pepsi","Sprite","Dr Pepper","Mountain Dew","Food"];
     db.collection(storeName).document("meta").setData(data["meta"]);
-    db.collection(storeName).document("Tacos").setData(data["Tacos"]);
-    db.collection(storeName).document("Tamales").setData(data["Tamales"]);
-    db.collection(storeName).document("Sides").setData(data["Sides"]);
-    db.collection(storeName).document("Drinks").setData(data["Drinks"]);*/
-  }
+    db.collection(storeName).document(storeOptions[0]).setData(data[storeOptions[0]]);
+    db.collection(storeName).document(storeOptions[1]).setData(data[storeOptions[1]]);
+    db.collection(storeName).document(storeOptions[2]).setData(data[storeOptions[2]]);
+    db.collection(storeName).document(storeOptions[3]).setData(data[storeOptions[3]]);
+    db.collection(storeName).document(storeOptions[4]).setData(data[storeOptions[4]]);
+    db.collection(storeName).document(storeOptions[5]).setData(data[storeOptions[5]]);
+
+
+  }*/
 
   Future<String> getFileData(String path) async {
     return await rootBundle.loadString(path);
@@ -154,7 +134,7 @@ class MyHomePage extends StatelessWidget {
       appBar: new AppBar(
         title: const Text('Firestore Example'),
       ),
-      body: new Container(
+      /*body: new Container(
         child: new MapboxOverlay(
           controller: controller,
           options: new MapboxMapOptions(
@@ -166,13 +146,13 @@ class MyHomePage extends StatelessWidget {
                 tilt: 0.0),
           ),
         ),
-      ),
-      //body: new MessageList(firestore: firestore),
-      floatingActionButton: new FloatingActionButton(
+      ),*/
+      body: new MessageList(firestore: firestore),
+      /*floatingActionButton: new FloatingActionButton(
         onPressed: _addMessage,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ),
+      ),*/
     );
   }
 }

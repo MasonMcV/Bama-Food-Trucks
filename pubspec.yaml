@@ -46,6 +46,7 @@ flutter:
   assets:
     - assets/local_roots.json
     - assets/little_poblano.json
+    - assets/gampys_soda.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

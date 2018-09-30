@@ -1,0 +1,119 @@
+{
+    "meta": {
+        "truck": "Gampys Soda",
+        "truckid": "3"
+    },
+
+    "Coca-Cola": {
+        "items": [
+            {
+                "name": "Fixin",
+                "price": 2.65,
+                "description": "Coke Zero, Raspberry Puree"
+            },
+            {
+                "name": "Might Could",
+                "price": 3.15,
+                "description": "Diet Coke, Coconut, Lime (Fruit)"
+            },
+            {
+                "name": "Tailgaiting",
+                "price": 2.45,
+                "description": "Coke, Cherry, Coconut"
+            }
+        ]
+    },
+    "Dr Pepper": {
+        "items": [
+            {
+                "name": "Muddy Dr Pepper",
+                "price": 2.00,
+                "description": "Dr Pepper, Coconut"
+            },
+            {
+                "name": "Southern Belle",
+                "price": 3.10,
+                "description": "Dr Pepper, Vanilla, Coconut Cream"
+            },
+            {
+                "name": "The Forrest Gamp",
+                "price": 3.30,
+                "description": "Dr Pepper, Raspberry Puree, Coconut Cream"
+            }
+        ]
+    },
+    "Mountain Dew": {
+        "items": [
+            {
+                "name": "All Y'all",
+                "price": 3.25,
+                "description": "Mt Dew, Mango Puree, Strawberry Puree"
+            },
+            {
+                "name": "Powerdew",
+                "price": 3.05,
+                "description": "Mt Dew, Blue Powerade, Coconut"
+            },
+            {
+                "name": "T-Town",
+                "price": 3.05,
+                "description": "Mt Dew, Raspberry Puree, Vanilla"
+            },
+            {
+                "name": "Y'all",
+                "price": 2.65,
+                "description": "Mt Dew, Mango Puree"
+            }
+        ]
+    },
+    "Pepsi": {
+        "items": [
+            {
+                "name": "Blue Hound",
+                "price": 2.85,
+                "description": "Pepsi, Coconut, Blue Curacao"
+            },
+            {
+                "name": "Yup",
+                "price": 3.05,
+                "description": "Pepsi, Raspberry Puree, Vanilla"
+            }
+        ]
+    },
+    "Sprite": {
+        "items": [
+            {
+                "name": "Sea Side",
+                "price": 3.50,
+                "description": "Sprite, Pineapple, Peach, Coconut Cream"
+            },
+            {
+                "name": "Tide",
+                "price": 3.10,
+                "description": "Sprite, Tigers Blood, Coconut Cream"
+            },
+            {
+                "name": "Druid City Special",
+                "price": 2.85,
+                "description": "Sprite, Blue Coconut, Mango"
+            }
+        ]
+    },
+    "Food": {
+        "items": [
+            {
+                "name": "Sugar Cookie",
+                "price": 2.49
+            },
+            {
+                "name": "16 oz Pretzel Bites",
+                "price": 3.59
+            },
+            {
+                "name": "Combo",
+                "price": 5.99,
+                "description": "Pretzel Bites and Medium Drink"
+            }
+        ]
+    }
+}
