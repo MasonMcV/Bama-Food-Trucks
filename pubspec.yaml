@@ -26,6 +26,8 @@ dev_dependencies:
 
   mapbox_gl: ^0.0.1
 
+  location: ^1.4.1
+
   cloud_firestore: "^0.8.0"
 
   flutter_launcher_icons: "^0.6.1"
@@ -33,7 +35,7 @@ dev_dependencies:
   firebase_core: ^0.2.5
 
 flutter_icons:
-  image_path: "icon/icon.png"
+  image_path: "assets/icon.png"
   android: true
   ios: true
 
@@ -47,7 +49,7 @@ flutter:
     - assets/local_roots.json
     - assets/little_poblano.json
     - assets/gampys_soda.json
-    - assets/image.png
+    - assets/icon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

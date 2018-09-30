@@ -10,6 +10,7 @@ import 'dart:convert';
 import 'menu.dart';
 import 'map.dart';
 import 'dart:io';
+import 'login.dart';
 
 Future<void> main() async {
   final FirebaseApp app = await FirebaseApp.configure(
@@ -171,6 +172,32 @@ class MyHomePage extends StatelessWidget {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),*/
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new DrawerHeader(
+              child: null,
+              decoration: new BoxDecoration(
+                  image: new DecorationImage(
+                    image: new AssetImage('assets/icon.png'),
+                  )
+              ),
+            ),
+            new ListTile(
+              leading: new Icon(Icons.settings),
+              title: new Text("Settings"),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(builder: (BuildContext context) {
+                      return new LoginPage(firestore: firestore,);
+                    })
+                );
+              },
+            )
+          ],
+        )
+      ),
     );
   }
 }

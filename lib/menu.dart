@@ -90,6 +90,7 @@ class MessageList extends StatelessWidget {
         title: new Text(map["name"]),
         //isThreeLine: true,
         subtitle: map.containsKey("description") ? new Text(map["description"]) : null,
+        trailing: map.containsKey("price") ? new Text('\$'+map["price"].toString()) : " ",
       ),);
     }
     return expansionList;
