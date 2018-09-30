@@ -28,8 +28,8 @@ class MapPage extends StatelessWidget {
           options: new MapboxMapOptions(
             style: Style.mapboxStreets,
             camera: new CameraPosition(
-                target: new LatLng(lat: 37.8155984, lng: -97.9640312),
-                zoom: 11.0,
+                target: new LatLng(lat: 33.2116995, lng: -87.5466108),
+                zoom: 14.25,
                 bearing: 0.0,
                 tilt: 0.0),
           ),

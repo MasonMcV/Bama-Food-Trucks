@@ -8,6 +8,7 @@ import 'package:mapbox_gl/controller.dart';
 import 'package:mapbox_gl/overlay.dart';
 import 'dart:convert';
 import 'menu.dart';
+import 'map.dart';
 
 Future<void> main() async {
   final FirebaseApp app = await FirebaseApp.configure(
@@ -51,7 +52,26 @@ class MessageList extends StatelessWidget {
       BuildContext context) {
     List<Widget> expansionList = [];
 
-    expansionList.add(new Card(child: new Text("this is the first tile"),));
+    expansionList.add(
+        new GestureDetector(child:
+        new Card(
+          child: new Image.asset(
+            'assets/image.png',
+            width: 600.0,
+            height: 240.0,
+            fit: BoxFit.cover,
+          ),
+        ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return new MapPage(firestore: firestore,);
+                })
+            );
+          },
+        )
+    );
 
     if (snapshotList != null && snapshotList.isNotEmpty) {
       for (var snapshotDocument in snapshotList) {
@@ -80,22 +100,6 @@ class MessageList extends StatelessWidget {
     }
     return expansionList;
   }
-
-  /*List<Widget> tileWidgetList(List<dynamic> list, BuildContext context) {
-    List<Widget> expansionList = [];
-    for (Map map in list) {
-      expansionList.add(new ListTile(
-        title: new Text(map["truck"]),
-        onTap: () {
-          Navigator.push(
-              context, new MaterialPageRoute(builder: (BuildContext context) {
-            return new MenuPage(firestore: firestore,);
-          }));
-        },
-      ),);
-    }
-    return expansionList;
-  }*/
 }
 
 class MyHomePage extends StatelessWidget {
